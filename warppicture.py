@@ -28,7 +28,7 @@ if image is None:
 
 # video PATH definition
 input_video_path = "C:/Users/uih32851/Desktop/video1.mp4"
-output_video_path = "output_warped_video.mp4"
+output_video_path = "C:/Users/uih32851/Desktop/output_warped_video.mp4"
 
 cap = cv2.VideoCapture(input_video_path)
 
