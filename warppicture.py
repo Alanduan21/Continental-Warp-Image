@@ -1,4 +1,5 @@
 import cv2
+print(cv2.__version__)
 import numpy as np
 
 def warp_to_smile_shape(image, curvature=0.0005):
@@ -24,6 +25,52 @@ image = cv2.imread("C:/Users/uih32851/Desktop/Image1.png")
 if image is None:
     print("Image not loaded. Check the file path and name.")
     exit()
+
+# video PATH definition
+input_video_path = "C:/Users/uih32851/Desktop/video1.mp4"
+output_video_path = "output_warped_video.mp4"
+
+cap = cv2.VideoCapture(input_video_path)
+
+# check opened
+if not cap.isOpened():
+    print("input video NOT opened.")
+else: 
+    # Get video property
+    frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+
+# define output
+video_out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
+
+while True:
+    ret,frame = cap.read()
+    if not ret:
+        break 
+
+    # apply warp 
+    warped_frame = warp_to_smile_shape(frame)
+
+
+    video_out.write(warped_frame)
+
+
+    # release everything
+
+cap.release()
+video_out.release()
+print(f"video printed out")
+
+
+
+
+
+
+
+
+
 
 # to write out 
 warped = warp_to_smile_shape(image)
