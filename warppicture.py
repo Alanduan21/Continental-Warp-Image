@@ -6,7 +6,7 @@ def warp_to_smile_shape(image, curvature=0.0005):
     map_y, map_x = np.indices((h, w), dtype=np.float32)
 
     # can't go beyond 2.1
-    offset_param = 0.2
+    offset_param = 0.3
     offset_y = (np.square(map_x - w / 2) * curvature * 1).astype(np.float32)
     map_y -= offset_y * offset_param
 
